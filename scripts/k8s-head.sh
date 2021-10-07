@@ -4,7 +4,7 @@ if [ ! -f "/home/vagrant/.kube/config" ]; then
     echo "> Init k8s admin (kubeadm)"
     HOST_NAME=$(hostname -s)
     echo "> Init k8s admin (kubeadm): ${HOST_NAME} => ${K8S_HEAD_IP}"
-    kubeadm init --apiserver-advertise-address=$K8S_HEAD_IP --apiserver-cert-extra-sans=$K8S_HEAD_IP --node-name $HOST_NAME
+    kubeadm init --apiserver-advertise-address=$K8S_HEAD_IP --apiserver-cert-extra-sans=$K8S_HEAD_IP --node-name $HOST_NAME --pod-network-cidr=192.169.0.0/16
 
     echo "> Set credentials to regular user (vagrant)"
     sudo --user=vagrant mkdir -p /home/vagrant/.kube
@@ -53,9 +53,3 @@ kubectl krew install ns
 
 echo "> Install Helm"
 curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-
-echo "> Setup cluster basics"
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-bash ${DIR}/cluster/00-network.sh up
-bash ${DIR}/cluster/01-metrics.sh up

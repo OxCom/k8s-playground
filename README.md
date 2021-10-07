@@ -8,6 +8,8 @@ Proof of Concept playground build with Vagrant and K8S
     ```bash
     vagrant up
     ```
+ 2. Once cluster up you have to configure network and metrics by your own    
+
 **NOTE**: WSL2 requires to have ``VM_PARA_PROVIDER = hyperv``, otherwise Vagrant will not be able to work with VirtualBox 
 
 ## Links
