@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
 echo "System update"
 apt-get update
 apt-get upgrade -y
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common vim
-
-#!/usr/bin/env bash
 
 echo "Checking for: docker"
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' docker-ce|grep "install ok installed")

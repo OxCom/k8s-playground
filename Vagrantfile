@@ -25,7 +25,7 @@ VM_NODE_MEM = "4096"
 
 # with WSL2 it should be hyper-v: https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
 # WSL2 enabled ? "hyperv" : "kvm"
-VM_PARA_PROVIDER = "hyperv"
+VM_PARA_PROVIDER = "kvm"
 
 # Number of nodes in cluster
 K8S_NODES = 3

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
 if [ ! -f "/home/vagrant/.kube/config" ]; then
     echo "> Init k8s admin (kubeadm)"
     HOST_NAME=$(hostname -s)
@@ -46,6 +44,7 @@ echo "> Install Krew"
   "$KREW" install krew
 )
 
+echo "PATH=\"\${KREW_ROOT:-\$HOME/.krew}/bin:\$PATH\"" >> /home/vagrant/.profile
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 echo '> Install Krew plugins'
@@ -54,3 +53,9 @@ kubectl krew install ns
 
 echo "> Install Helm"
 curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+echo "> Setup cluster basics"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+bash ${DIR}/cluster/00-network.sh up
+bash ${DIR}/cluster/01-metrics.sh up
