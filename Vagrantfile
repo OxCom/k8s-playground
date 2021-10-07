@@ -32,7 +32,7 @@ K8S_NODES = 3
 # Master IP address (x.y.z.K8S_MASTER)
 
 K8S_IP_START = 10
-K8S_NETWORK = "10.0.42"
+K8S_NETWORK = "10.100.42"
 K8S_HEAD_IP = "#{K8S_NETWORK}.#{K8S_IP_START}"
 
 # Extra disk for K8S node in GB
